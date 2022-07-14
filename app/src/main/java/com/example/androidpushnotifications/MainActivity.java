@@ -28,5 +28,16 @@ public class MainActivity extends AppCompatActivity {
                     //String msg = getString(R.string.msg_token_fmt, token);
                     Log.e("TAG", token);
                 });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("Sistemas")
+                .addOnCompleteListener(task -> {
+                    String msg = "Subscribed";
+                    if (!task.isSuccessful()) {
+                        msg = "Subscribe failed";
+                    }
+                    Log.d("tag", msg);
+                    Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                });
     }
+
 }
